@@ -25,3 +25,8 @@ source env/bin/activate
 ```
 pip install -r requirment.txt
 ```
+
+# Install Ansible roles
+```
+ansible-galaxy install geerlingguy.docker geerlingguy.pip
+```
