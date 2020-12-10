@@ -2,7 +2,8 @@
   vars:
     pip_install_packages:
       - name: docker
-    docker_apt_release_channel: edge
+    docker_apt_arch: arm64
+    docker_users: [ubuntu]
   pre_tasks:
     - name: Update apt cache.
       apt:
@@ -10,9 +11,10 @@
       become: true
       when: ansible_os_family == "Debian"
     - debug:
-        msg: "deb [arch={{ docker_apt_arch }}] https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} {{ docker_apt_release_channel }}" 
+       msg: "deb [arch={{ docker_apt_arch }}] https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} {{ docker_apt_release_channel }}" 
   roles:
     - role: geerlingguy.pip
+      become: true
     - role: geerlingguy.docker
       become: true
 
